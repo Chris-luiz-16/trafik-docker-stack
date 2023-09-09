@@ -80,8 +80,20 @@ docker node update --label-add service=flask worker2.ap-south-1.compute.internal
 docker node update --label-add service=mysql worker3.ap-south-1.compute.internal
 ```
 
-I've used the domain ```chrisich.tech``` to check the load-balancing of the application and ```traefik.chrisich.tech``` to load the traefik dashboard thereby I've pointed the A record to the manager's node public IP.
+I've used the domain ```sparkchrisich.tech``` to check the load-balancing of the application and ```dashboard.chrisich.tech``` to load the traefik dashboard thereby I've pointed the A record to the manager's node public IP.
 
+
+git clone to a directory
+```sh
+git clone ssh://git@sparklabs.in:29875/christest/Simple-app-with-MySQL-in-docker-swarm-cluster.git project
+cd project
+```
+
+Make sure to change the permission of ***acme.json file*** in letsencrypt directory
+
+```sh
+chmod 600 letsencrypt/acmes.json
+```
 
 Before deploying the application, I've created a custom network ```spark-net``` with the driver set as overlay
 
