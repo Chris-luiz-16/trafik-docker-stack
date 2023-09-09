@@ -89,10 +89,10 @@ git clone ssh://git@sparklabs.in:29875/christest/Simple-app-with-MySQL-in-docker
 cd project
 ```
 
-Make sure to change the permission of ***acme.json file*** in letsencrypt directory
+Make sure to change the permission of ***acme.json file*** in letsencrypt directory so that certificate loads in the file
 
 ```sh
-chmod 600 letsencrypt/acmes.json
+chmod 600 letsencrypt/acme.json
 ```
 
 Before deploying the application, I've created a custom network ```spark-net``` with the driver set as overlay
