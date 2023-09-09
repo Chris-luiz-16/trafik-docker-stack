@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:5
+    networks:
+      - spark-net
+    volumes:
+      - mysql-vol:/var/lib/mysql/
+    environment:
+      MYSQL_ROOT_PASSWORD: "mysqlroot123"
+      MYSQL_DATABASE: "college"
+    deploy:
+      replicas: 1
+      placement:
+        constraints:
+          - node.labels.service == mysql
+  flask:
+    image: chrisluiz16/flask-mysql:latest
+    depends_on:
+      - mysql
+    networks:
+      - spark-net
+    deploy:
+      replicas: 4
+      placement:
+        constraints:
+          - node.labels.service == flask
+      labels:
+        - traefik.enable=true
+        - traefik.http.routers.flask.rule=Host(`chrisich.tech`)
+        - traefik.http.routers.flask.entrypoints=web
+        - traefik.http.services.flask.loadbalancer.server.port=8080
+        - traefik.http.routers.flask-secured.rule=Host(`chrisich.tech`)
+        - traefik.http.routers.flask-secured.entrypoints=web-secured
+        - traefik.http.routers.flask-secured.tls.certresolver=mytlschallenge
+    ports:
+      - "8080:8080"
+    environment:
+      DATABASE_HOST: "mysql"
+      DATABASE_PORT: "3306"
+      DATABASE_USER: "root"
+      DATBASE_PASSWORD: "mysqlroot123"
+        
+volumes:
+  mysql-vol:
+networks:
+  spark-net:
+    external: true
