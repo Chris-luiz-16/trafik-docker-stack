@@ -16,7 +16,7 @@ services:
         constraints:
           - node.labels.service == mysql
   flask:
-    image: chrisluiz16/flask-mysql:latest
+    image: chrisluiz16/flask-mysql:v1
     depends_on:
       - mysql
     networks:
@@ -28,10 +28,10 @@ services:
           - node.labels.service == flask
       labels:
         - traefik.enable=true
-        - traefik.http.routers.flask.rule=Host(`chrisich.tech`)
+        - traefik.http.routers.flask.rule=Host(`spark.chrisich.tech`)
         - traefik.http.routers.flask.entrypoints=web
         - traefik.http.services.flask.loadbalancer.server.port=8080
-        - traefik.http.routers.flask-secured.rule=Host(`chrisich.tech`)
+        - traefik.http.routers.flask-secured.rule=Host(`spark.chrisich.tech`)
         - traefik.http.routers.flask-secured.entrypoints=web-secured
         - traefik.http.routers.flask-secured.tls.certresolver=mytlschallenge
     ports:
