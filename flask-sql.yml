@@ -16,7 +16,7 @@ services:
         constraints:
           - node.labels.service == mysql
   flask:
-    image: chrisluiz16/flask-mysql:v1
+    image: chrisluiz16/flask-mysql:latest
     depends_on:
       - mysql
     networks:
