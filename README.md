@@ -126,4 +126,4 @@ INSERT INTO employees (id, name,age,email) VALUES(105,"ron",38,"ron@gmail.com");
 INSERT INTO employees (id, name,age,email) VALUES(106,"thomas",19,"thomas@gmail.com");
 ```
 ### Accessing the Application
-After following all the above instructions, just login to ```https://chrisich.tech``` and to login to traefik dashboard, you can login to ```https://traefik.chrisich.tech```
+After following all the above instructions, just login to ```https://spark.chrisich.tech``` and to login to traefik dashboard, you can login to ```https://dashboard.chrisich.tech```
